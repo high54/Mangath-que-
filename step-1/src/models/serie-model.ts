@@ -26,7 +26,7 @@ export class SerieModel {
         this.id = id;
     }
     public SetNom(nom: string) {
-        this.nnom = nom;
+        this.nom = nom;
     }
     public SetResume(resume: string) {
         this.resume = resume;
@@ -37,7 +37,7 @@ export class SerieModel {
     public constructor() { }
 
     public ToString(): string {
-        return this.GetNom() + " <br />"this.GetResume();
+        return this.GetNom() + " <br />" + this.GetResume();
     }
 
 
