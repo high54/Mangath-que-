@@ -1,0 +1,36 @@
+/**
+* Association d'un image à un manga
+*/
+macroscript CouvertureInsert(
+	@NotNull number idManga,
+	@NotNull string fichier
+)
+{
+@@(database) INSERT INTO couvertures VALUES (:{idManga},:{fichier});
+}
+
+
+/**
+* Récupération d'une couverture via l'identifiant d'un manga
+*/
+macroscript CouvertureGetById(@NotNull number idManga)
+{
+var couverture = @@(database) SELECT * FROM couvertures WHERE idManga = :{idManga};
+} broadcast { couverture } on channel __selfName
+
+/**
+* Mise à jour d'une couverture
+*/
+macroscript CouvertureUpdateById(@NotNull number idManga,
+	@NotNull string fichier
+)
+{
+@@(database) UPDATE couvertures SET fichier = :{fichier} WHERE idManga = :{idManga};
+}
+/**
+* Suppression d'une couverture
+*/ 
+macroscript CouvertureDeleteById(@NotNull number idManga)
+{
+@@(database) DELETE FROM couvertures WHERE idManga = :{idManga};
+}
