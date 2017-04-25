@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mangathèque</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addSerie()"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-group *ngFor="let group of groupedSeries">
+      <ion-item-divider color="light">{{group.letter}}</ion-item-divider>
+      <ion-item-sliding *ngFor="let serie of group.series">
+
+        <ion-item (click)="showManga(serie)">
+          {{serie.nom}}
+        </ion-item>
+
+        <ion-item-options>
+
+          <button ion-button icon-only (click)="editSerie(serie)" color="light">
+        <ion-icon name="paper"></ion-icon>
+      </button>
+
+          <button ion-button icon-only (click)="deleteSerie(serie)" color="danger">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+
+        </ion-item-options>
+
+      </ion-item-sliding>
+    </ion-item-group>
+  </ion-list>
+
+</ion-content>
