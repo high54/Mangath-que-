@@ -1,0 +1,45 @@
+/**
+* Ajout d'une nouvelle serie dans la base de donnée
+*/
+macroscript SerieInsert(
+	@NotNull string nom,
+	string resume
+)
+{
+@@(database) INSERT INTO series VALUES (:{nom},:{resume});
+}
+
+/**
+* Récupération de toutes les séries
+*/
+macroscript SerieGetAll()
+{
+ var  series = @@(database) SELECT * FROM series;
+} broadcast { series } on channel __selfName
+
+/**
+* Récupération d'une serie via sont identifiant unique
+*/
+macroscript SerieGetById(@NotNull number idSerie)
+{
+var serie = @@(database) SELECT * FROM series WHERE id = :{idSerie};
+} broadcast { serie } on channel __selfName
+
+/**
+* Mise à jour d'une série
+*/
+macroscript SerieUpdateById(@NotNull number idSerie,
+	@NotNull string nom,
+	string resume
+)
+{
+@@(database) UPDATE mangas SET nom = :{nom}, resume = :{resume} WHERE id = :{idSerie};
+}
+/**
+* Suppression d'une série et de tout les mangas associé
+*/ 
+macroscript SerieDeleteById(@NotNull number idSerie)
+{
+@@(database) DELETE FROM mangas WHERE idSerie = :{idSerie};
+@@(database) DELETE FROM series WHERE id = :{idSerie};
+}
