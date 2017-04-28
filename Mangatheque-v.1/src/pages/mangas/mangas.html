@@ -1,0 +1,41 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{serie.GetNom()}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addManga()"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngFor="let manga of mangas">
+    <ion-card-content>
+      <h2>{{manga.titre}}</h2>
+      <p>Tome n° {{manga.tome}}</p>
+
+      <p>{{manga.resume}}</p>
+
+
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small color="danger" (click)="editManga(manga)" icon-left>
+            <ion-icon name='paper'></ion-icon>
+            Edit
+          </button>
+        </ion-col>
+        <ion-col text-center>
+          <button ion-button clear small (click)="showConfirm(manga)" color="danger" icon-left>
+            <ion-icon name='trash'></ion-icon>
+            Delete
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
