@@ -6,33 +6,30 @@ import { SerieProvider } from '../../providers/serie-provider';
 
 // Import du client afin d'établire une connexion avec ZetaPush
 import { ClientProvider } from '../../providers/client-provider';
-/**
- * Generated class for the AddSerie page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
+
 @IonicPage()
 @Component({
     selector: 'page-add-serie',
     templateUrl: 'add-serie.html',
 })
 export class AddSeriePage {
-    private seriveSerie = this.client.getInstance().createAsyncMacroService({
+    private serieService = this.client.getInstance().createAsyncMacroService({
         Type: SerieProvider,
         deploymentId: 'macro_0'
     }) as SerieProvider;
     private nom: string = "";
     private resume: string = "";
+
     constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private client: ClientProvider) {
     }
 
     saveSerie() {
-        if (this.nom !== "undefined") {
+        if (this.nom.length > 0) {
             let serie = new SerieModel();
             serie.SetNom(this.nom);
             serie.SetResume(this.resume);
-            this.seriveSerie.SerieInsert(serie.GetNom(), serie.GetResume()).then((result) => {
+            this.serieService.SerieInsert(serie.GetNom(), serie.GetResume()).then((result) => {
                 serie.SetId(result.id[0].id);
                 this.viewCtrl.dismiss(serie);
             }).catch((error) => {

@@ -56,6 +56,7 @@ export class HomePage {
       if(this.client.getInstance().isConnected())
       {
         this.menu.enable(true);
+        this.series = new Array<SerieModel>();
         this.serieService.SerieGetAll().then((result) => {
             for (let serie of result.series) {
                 let newSerie = new SerieModel();

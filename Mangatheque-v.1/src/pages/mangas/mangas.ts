@@ -29,7 +29,7 @@ export class MangasPage {
 
     private serie: SerieModel = new SerieModel();
     private mangas: MangaModel[] = new Array<MangaModel>();
-    constructor(public navCtrl: NavController, public navParams: NavParams, private client: ClientProvider, private modalCtrl: ModalController,public alertCtrl: AlertController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private client: ClientProvider, private modalCtrl: ModalController, public alertCtrl: AlertController) {
         this.serie = this.navParams.get('serie');
         this.showManga();
     }
@@ -62,7 +62,7 @@ export class MangasPage {
         })
     }
     addManga() {
-        let modal = this.modalCtrl.create(AddMangaPage, { serie: this.serie,mangas:this.mangas });
+        let modal = this.modalCtrl.create(AddMangaPage, { serie: this.serie, mangas: this.mangas });
         modal.present();
         modal.onDidDismiss((data) => {
             this.showManga();
@@ -82,25 +82,25 @@ export class MangasPage {
     }
 
     showConfirm(manga) {
-    let confirm = this.alertCtrl.create({
-      title: 'Voulez-vous supprimer ce manga ?',
-      message: manga.GetTitre()+'<br />'+manga.GetTome(),
-      buttons: [
-        {
-          text: 'Annuler',
-          handler: () => {
+        let confirm = this.alertCtrl.create({
+            title: 'Voulez-vous supprimer ce manga ?',
+            message: manga.GetTitre() + '<br />' + manga.GetTome(),
+            buttons: [
+                {
+                    text: 'Annuler',
+                    handler: () => {
 
-          }
-        },
-        {
-          text: 'Supprimer',
-          handler: () => {
-              this.deleteManga(manga)
-          }
-        }
-      ]
-    });
-    confirm.present();
-  }
+                    }
+                },
+                {
+                    text: 'Supprimer',
+                    handler: () => {
+                        this.deleteManga(manga)
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    }
 
 }

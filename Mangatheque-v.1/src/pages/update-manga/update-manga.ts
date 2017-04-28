@@ -43,7 +43,6 @@ export class UpdateMangaPage {
   }
 
   saveManga() {
-    this.tome = this.firstInUpper(this.tome);
     this.manga.SetIsLu(this.isLu);
     this.manga.SetTome(this.tome);
     this.manga.SetTitre(this.titre);
@@ -56,9 +55,6 @@ export class UpdateMangaPage {
   dismiss() {
       this.viewCtrl.dismiss();
   }
-  public firstInUpper(string) {
-      string = string.toLowerCase();
-      return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+
 
 }
