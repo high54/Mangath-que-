@@ -1,0 +1,17 @@
+database.rdbms_ddl({statement : '
+CREATE TABLE IF NOT EXISTS mangas (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	titre VARCHAR(150) NOT NULL,
+	tome INT NOT NULL,
+	resume TEXT NULL,
+	idSerie INT NOT NULL,
+    isLu TINYINT(1) NOT NULL,
+    isAcquis TINYINT(1) NOT NULL
+)'});
+database.rdbms_ddl({statement : '
+CREATE TABLE IF NOT EXISTS series (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nom VARCHAR(150) NOT NULL,
+	resume TEXT NULL
+)'});
+
