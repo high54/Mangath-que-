@@ -2,6 +2,6 @@
 Tutoriel Mangatheque sous ZMS et Ionic 3
 
 
-Mangathèque v 1.0 :
-Affichage, Modification, Suppression et Ajout de série
-Affichage, Modification, Suppression et Ajout de manga
+Mangathèque v 1.0 :<br />
+Affichage, Modification, Suppression et Ajout de série<br />
+Affichage, Modification, Suppression et Ajout de manga<br />
