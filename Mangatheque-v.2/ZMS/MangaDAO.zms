@@ -1,0 +1,58 @@
+/**
+* Ajout d'un nouveau manga dans la base de donnée
+*/
+macroscript MangaInsert(
+	@NotNull string titre,
+	@NotNull string tome,
+	string resume,
+	@NotNull number idSerie,
+	@NotNull boolean isLu,
+	@NotNull boolean isAcquis,
+	string couverture
+)
+{
+@@(database) INSERT INTO mangas (titre,tome,resume,idSerie,isLu,isAcquis,couverture) VALUES (:{titre},:{tome},:{resume},:{idSerie},:{isLu},:{isAcquis},:{couverture});
+var id = @@(database) SELECT id FROM mangas WHERE id= LAST_INSERT_ID();
+} return { id }
+
+/**
+* Récupération de tout les mangas d'une série
+*/
+macroscript MangaGetAll(@NotNull number idSerie)
+{
+ var  mangas = @@(database) SELECT * FROM mangas WHERE idSerie = :{idSerie};
+} return { mangas }
+
+/**
+* Récupération d'un manga via sont identifiant unique
+*/
+macroscript MangaGetById(@NotNull number idManga)
+{
+var manga = @@(database) SELECT * FROM mangas WHERE id = :{idManga};
+} return { manga } 
+
+/**
+* Mise à jour d'un manga
+*/
+macroscript MangaUpdateById(@NotNull number idManga,
+	@NotNull string titre,
+	@NotNull string tome,
+	string resume,
+	@NotNull number idSerie,
+	@NotNull boolean isLu,
+	@NotNull boolean isAcquis,
+	string couverture
+)
+{
+@@(database) UPDATE mangas SET titre = :{titre}, tome = :{tome}, resume = :{resume}
+                              ,idSerie=:{idSerie},isLu = :{isLu}, isAcquis=:{isAcquis},
+                              couverture=:{couverture}
+                              WHERE id = :{idManga};
+}
+/**
+* Suppression d'un manga
+*/ 
+macroscript MangaDeleteById(@NotNull number idManga)
+{
+@@(database) DELETE FROM mangas WHERE id = :{idManga};
+}

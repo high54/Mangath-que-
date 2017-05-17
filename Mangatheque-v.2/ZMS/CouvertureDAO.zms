@@ -1,0 +1,19 @@
+/** Demande une URL pour l'upload */
+macroscript uploadFile(
+    string path = '/'
+) {
+    var upload = files.newUploadUrl({ path });
+} return { upload } on channel __selfName
+/** Récupération de tout les fichiers */
+macroscript listFiles(
+    string folder = '/'
+) {
+    var listing = files.ls({ folder });
+} return { listing } on channel __selfName
+
+/** Déclaration d'une macro appelée après l'upload effectif d'un fichier */
+macroscript addFile(string guid) {
+    // Confirmation de l'upload effectif du fichier
+    var file = files.newFile({ guid});
+
+} broadcast { file } on channel __selfName
