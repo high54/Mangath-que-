@@ -1,5 +1,5 @@
 ## Mangatheque
-Tutoriel Mangatheque sous ZMS et Ionic 3
+Tutoriel Mangatheque sous ZetaPush et Ionic 3
 
 
 # Mangathèque v 0.1 :
