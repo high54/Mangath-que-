@@ -9,7 +9,7 @@ Affichage, Modification, Suppression et Ajout de manga<br />
 # Mangathèque v 0.2
 
 Possibilité d'ajouter des couvertures aux mangas<br />
-Ajout via la caméra du téléphone<br />
-Ajout depuis l'album du téléphone<br />
+Ajout via la caméra du smartphone<br />
+Ajout depuis l'album du smartphone<br />
 
 
