@@ -1,0 +1,8 @@
+
+database.rdbms_ddl({statement : '
+CREATE TABLE IF NOT EXISTS series (
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nom VARCHAR(150) NOT NULL,
+	resume TEXT NULL
+)'});
+

@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Connexion</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+   <ion-item>
+  <ion-label fixed>Login</ion-label>
+      <ion-input type="text" [(ngModel)]="login" name="login" value=""></ion-input>
+      </ion-item>
+       <ion-item>
+      <ion-label fixed>Mot de passe</ion-label>
+        <ion-input [(ngModel)]="password" type="password" name="password" value=""></ion-input>
+      </ion-item>
+         <ion-item>
+<button ion-button type="submit" (click)="signin(login,password)">Connexion</button>
+<button ion-button (click)="signup()">Inscription</button>
+</ion-item>
+ <ion-item>
+<button ion-button clear (click)="resetPassword(login)">Mot de passe perdu ?</button>
+</ion-item>
+</ion-content>

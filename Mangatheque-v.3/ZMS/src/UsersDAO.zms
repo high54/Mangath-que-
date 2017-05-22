@@ -1,0 +1,77 @@
+macroscript IsLoginAvailable(@NotNull string login)
+{
+	var verifLogin = true;
+	var result = auth.checkUser({key : login, softFail : true});
+	if(result.login !=null)
+	{
+		verifLogin = false;
+	}
+} return { verifLogin } on channel __selfName
+
+macroscript InsertUser(@NotNull string login,@NotNull string password,@NotNull string email, @NotNull string pseudo)
+{
+	var user = auth.createUser({
+		login:login,
+		password:password,
+		email:email,
+		pseudo:pseudo
+	});
+	user.userKey = user.zetapushKey;
+	user.zetapushKey = null;
+
+} return { user }
+
+macroscript GetUserByLogin(@NotNull string login)
+{
+	var result = auth.checkUser({key : login, softFail : true});
+	result.userKey = result.zetapushKey;
+	result.zetapushKey = null;
+} return { result }
+macroscript GetUserByKey(@NotNull string userKey)
+{
+	var result = auth.checkUser({key : userKey, softFail : true});
+	result.userKey = result.zetapushKey;
+	result.zetapushKey = null;
+} return { result }
+
+macroscript UpdateUser(@NotNull string login,@NotNull string pseudo)
+{
+	var result = auth.updateUser({login,pseudo});
+	
+	result.userKey = result.zetapushKey;
+	result.zetapushKey = null;
+	
+} return { result }
+
+macroscript ResetPasswordUser(@NotNull string login)
+{
+	var user = auth.checkUser({key : login, softFail : true});
+	var loginVerif = false;
+	if(user.login != null)
+	{
+		loginVerif = true;
+		var result = auth.requestReset({key : login});
+		var html = '<!DOCTYPE html><html><head></head><body>Votre token : '+result.token+'</body></html>';
+		
+		
+			/** Send mail */
+		emails.send({
+			html: html,
+			subject: "Reset Password",
+			to: [user.email]
+		});
+	}
+
+	
+} return { loginVerif }
+
+macroscript ChangePasswordUser(@NotNull string token, @NotNull string password)
+{
+	var result = auth.changePassword({token : token, password : password});
+} return { result }
+
+macroscript CountDetailsUser(@NotNull string userKey)
+{
+	var nbSeries = @@(database) SELECT COUNT(*) AS nbSeries FROM series WHERE userKey = :{userKey};
+}
+return { nbSeries } on channel __selfName

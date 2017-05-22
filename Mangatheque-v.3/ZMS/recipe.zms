@@ -1,0 +1,45 @@
+/**
+* Recipe com.whyme.apptuto
+* Created on Fri Apr 21 15:36:23 CEST 2017 by Dev
+* Documentation in a source comment for a simple description
+*/
+recipe com.whyme.apptuto 1.0.0;
+
+/** Welcome message read from configuration */
+const WELCOME_MESSAGE = @com.whyme.apptuto.welcomeMessage;
+
+/** constant for a table name */
+const BUDDIES_TABLE = "Buddies";
+const BUDDIES_COLUMN = "buddies";
+
+/** a simple authentication service */
+service auth = simple(__default);
+
+/** our code is run by this service */
+service code = macro(__default) for 'src';
+
+/** a place to upload files*/
+service files = zpfs_hdfs('manga_upload').options({
+	upload_thumbnails: '250,500,1000'
+});
+/** a NoSQL database */
+service nosql_db = gda(__default).forbiddenVerbs(__all);
+/** a classical SQL database */
+service database = rdbms(__default);
+/** to send e-mails */
+service emails = sendmail(__default).options({
+	sendmail_host : "auth.smtp.1and1.fr",
+	sendmail_port: "465",
+	sendmail_username : "robot@why-me.tech",
+	sendmail_password : "Snoop1987Julien54680",
+	sendmail_from : "robot@why-me.tech",
+	sendmail_replyTo : "noreply@why-me.tech",
+	sendmail_ssl: true,
+	sendmail_starttls: true
+});
+/** triggers and callbacks */
+service triggers = trigger(__default);
+/** Elastic Search service */
+service searchService = search('search_0').forbiddenVerbs(__all);
+/** User group service */
+service groupsService = groups(__default).forbiddenVerbs(__all);
