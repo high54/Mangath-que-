@@ -3,7 +3,7 @@ Tutoriel Mangatheque sous ZetaPush et Ionic 3
 
 
 # Mangathèque v 0.1 :
-[Tutoriel pour la partie 1](http://julien-bertacco.developpez.com/tutoriels/zms-ionic3/)
+[Tutoriel pour la partie 1](http://julien-bertacco.developpez.com/tutoriels/zms-ionic3/)<br />
 Affichage, Modification, Suppression et Ajout de série<br />
 Affichage, Modification, Suppression et Ajout de manga<br />
 
