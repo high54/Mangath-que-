@@ -47,7 +47,6 @@ export class LoginPage {
     }
 
   }
-
   private signin(login, password) {
     let loader = this.loadingCtrl.create({
       content: "Connexion...",
