@@ -16,5 +16,9 @@ export class CouvertureProvider extends services.Macro {
   addFile(guid) {
     return this.$publish('addFile',{guid});
   }
+  deleteFile(path)
+  {
+    return this.$publish('deleteFile',{path});
+  }
 
 }
