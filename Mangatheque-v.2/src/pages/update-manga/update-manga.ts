@@ -143,7 +143,10 @@ export class UpdateMangaPage {
           content: 'Chargement...',
       });
       this.loading.present();
-
+      if(this.lastImage !== '' && this.lastImage !== "undefined")
+      {
+        this.couvertureService.deleteFile(this.lastImage);
+      }
       // Use the FileTransfer to upload the image
       this.couvertureService.uploadFile("/").then((result) => {
           let uploadUrl = result.upload.url;
